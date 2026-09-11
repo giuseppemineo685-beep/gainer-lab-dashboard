@@ -16,6 +16,11 @@ function draw(data){
   const labels={complete:'Completa',filtered:'Filtrada',top10:'Top 10'};
   const pct=n=>n===null||n===undefined?'—':`${n>=0?'+':''}${Number(n).toFixed(2)}%`;
   $('p2-portfolios').innerHTML=p2.portfolios.length?p2.portfolios.map(r=>`<tr><td><strong>${r.theme_rank}. ${r.theme}</strong></td><td>${labels[r.strategy]||r.strategy}</td><td>${r.constituents}</td><td class="${r.return_24h>=0?'positive':'negative'}">${pct(r.return_24h)}</td><td>${pct(r.median_return_24h)}</td><td>${pct(r.return_without_max)}</td></tr>`).join(''):'<tr><td colspan="6" class="empty">Esperando el primer snapshot verificado.</td></tr>';
+  const statuses={entered:'ENTRÓ',exited:'SALIÓ',continuing:'CONTINÚA'};
+  const reasons={market_cap:'Market cap',liquidity:'Liquidez',volume:'Volumen',holders:'Holders',gain:'Ganancia',turnover:'Rotación',not_in_current_snapshot:'Fuera del ranking'};
+  const reasonText=r=>r?r.split(',').map(x=>reasons[x]||x).join(', '):'Cumple';
+  const coins=p2.coins||[];
+  $('p2-coins').innerHTML=coins.length?coins.map(r=>`<tr><td>${r.theme}</td><td><strong>${r.name}</strong><small>${r.symbol}</small></td><td>${r.price===null?'—':'$'+price(r.price)}</td><td class="${r.price_change_since_previous>=0?'positive':'negative'}">${pct(r.price_change_since_previous)}</td><td>${money(r.market_cap)}</td><td class="${r.eligible?'positive':'negative'}">${reasonText(r.exclusion_reason)}</td><td><span class="badge">${statuses[r.status]}</span></td></tr>`).join(''):'<tr><td colspan="7" class="empty">La variación aparecerá después de la segunda captura.</td></tr>';
 }
 async function refresh(){
   try{
