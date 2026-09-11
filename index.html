@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gainer Lab</title>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .tabs{display:flex;gap:8px;margin:28px 0 14px;border-bottom:1px solid var(--line)}
+    .tab{border:0;background:transparent;color:var(--muted);padding:13px 16px;cursor:pointer;font:inherit;font-weight:700;border-bottom:2px solid transparent}
+    .tab.active{color:var(--green);border-bottom-color:var(--green)}
+    .hidden{display:none}.hero-two{padding:34px 2px 24px}.hero-two h2{font-size:32px;margin:8px 0}.hero-two p,.empty-state p{color:var(--muted);max-width:720px;line-height:1.6}
+    .rules{margin-top:18px;color:var(--muted)}.rules p{padding:9px 0;margin:0;border-top:1px solid var(--line)}
+    @media(max-width:700px){.tabs{overflow:auto}.tab{white-space:nowrap}}
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div><span class="eyebrow">BINANCE · LIVE RESEARCH</span><h1>Gainer Lab</h1></div>
+      <div class="live"><i></i><span id="status">Conectando</span></div>
+    </header>
+    <nav class="tabs" aria-label="Proyectos">
+      <button class="tab active" data-tab="project01">01 · CoinMarketCap / Binance</button>
+      <button class="tab" data-tab="project02">02 · CoinGecko Microcaps</button>
+    </nav>
+    <div id="project01" class="project">
+    <section class="summary">
+      <article><span>Capturas</span><strong id="snapshots">—</strong></article>
+      <article><span>Última actualización</span><strong id="updated">—</strong></article>
+      <article><span>Nuevas entradas</span><strong id="new-count">—</strong></article>
+    </section>
+    <section class="panel">
+      <div class="panel-title"><div><span class="eyebrow">AHORA</span><h2>Top gainers 24h</h2></div><span class="note">Volumen mínimo $5M · USDT</span></div>
+      <div class="table-wrap"><table><thead><tr><th>#</th><th>Activo</th><th>Variación</th><th>Precio</th><th>Volumen 24h</th><th>Estado</th></tr></thead><tbody id="ranking"></tbody></table></div>
+    </section>
+    <section class="grid">
+      <article class="panel"><div class="panel-title"><div><span class="eyebrow">MOVIMIENTO</span><h2>Cambios recientes</h2></div></div><div id="entries" class="entries"></div></article>
+      <article class="panel"><div class="panel-title"><div><span class="eyebrow">BACKTEST · AGO 2026</span><h2>Resultados históricos</h2></div></div><div id="research" class="research"></div></article>
+    </section>
+    </div>
+    <section id="project02" class="project hidden">
+      <section class="hero-two">
+        <span class="eyebrow">PROYECTO 02 · PAPER TRADING</span>
+        <h2>CoinGecko Stonks ETF Lab</h2>
+        <p>Seguimiento prospectivo de los temas con mayor capitalización y tres carteras equiponderadas.</p>
+      </section>
+      <section class="summary">
+        <article><span>Capturas</span><strong id="p2-snapshots">—</strong></article>
+        <article><span>Última actualización</span><strong id="p2-updated">—</strong></article>
+        <article><span>Temas activos</span><strong id="p2-themes">—</strong></article>
+      </section>
+      <section class="panel">
+        <div class="panel-title"><div><span class="eyebrow">SNAPSHOT PROSPECTIVO</span><h2>Carteras temáticas</h2></div><span class="note">Completa · Filtrada · Top 10</span></div>
+        <div class="table-wrap"><table><thead><tr><th>Tema</th><th>Estrategia</th><th>Monedas</th><th>Referencia 24h</th><th>Mediana</th><th>Sin máximo</th></tr></thead><tbody id="p2-portfolios"></tbody></table></div>
+      </section>
+      <section class="grid p2-notes">
+        <article class="panel"><span class="eyebrow">FILTRO FIJO</span><h2>Elegibilidad</h2><div class="rules"><p>Liquidez ≥ $15K</p><p>Volumen ≥ $5K</p><p>Holders ≥ 100</p><p>Ganancia ≤ 150% · Volumen/liquidez ≤ 5</p></div></article>
+        <article class="panel"><span class="eyebrow">METODOLOGÍA</span><h2>Cohortes</h2><div class="rules"><p>Composición congelada 24 horas</p><p>Rebalanceo diario separado</p><p>Horizontes: 1h, 6h, 24h, 3d, 7d y 30d</p><p>Paper trading · Sin órdenes reales</p></div></article>
+      </section>
+    </section>
+    <footer>Solo investigación · Sin ejecución de órdenes</footer>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
