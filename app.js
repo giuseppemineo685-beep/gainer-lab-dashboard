@@ -19,8 +19,9 @@ function draw(data){
 }
 async function refresh(){
   try{
-    let response=await fetch('/api/dashboard');
-    if(!response.ok) response=await fetch('./data.json');
+    const isStatic=location.hostname.endsWith('github.io');
+    let response=await fetch(isStatic?'./data.json':'/api/dashboard');
+    if(!response.ok&&!isStatic) response=await fetch('./data.json');
     if(!response.ok) throw new Error('Datos no disponibles');
     draw(await response.json());
   }catch(e){$('status').textContent='Sin conexión'}
